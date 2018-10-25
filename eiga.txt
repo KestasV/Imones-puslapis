@@ -1,0 +1,294 @@
+-----------------------------------1 diena React-------------------------------------
+Downloading React repository
+creating branch, checkout to branch
+create folder by branch name
+
+Start:
+    $npm init -y
+    $npm i webpack webpack-cli --save-dev
+    $npm i react react-dom --save
+    $npm install "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
+    $npm install --save-dev @babel/cli
+    $npm install --save-dev @babel/preset-react
+    $npm install --save path
+    $npm i css-loader style-loader --save-dev
+    $npm i html-webpack-plugin --save-dev
+
+    create src/components
+    create src/styles
+    create src/index.jsx
+        console.log('Test')
+    create src/index.html
+        add template with div#root in the body
+    create webpack.config.js
+        write some stuff
+
+    replace scripts in package.json
+        "start": "webpack --mode development --watch",
+        "build": "webpack --mode production"
+    test page:
+        $npm start
+
+    src/index.jsx
+        import react things and Index
+        render Index with reactDom
+    src/components/index.jsxsx
+        import react
+        create simple component
+    src/styles/Index.css
+        h1 styles
+
+    add webpack-dev-server:
+        install library:
+            $npm install webpack-dev-server --save-dev
+        configure webpack.config.js
+        change script
+            webpack-dev-server --mode development --open --hot
+
+    add Bootstrap and sass compiler
+        install some libraries:
+            $npm install bootstrap
+            $npm install --save jquery popper.js
+            $npm install --save style-loader css-loader postcss-loader precss autoprefixer
+            $npm install sass-loader node-sass --save-dev
+            $npm install --save-dev mini-css-extract-plugin
+        in src/index.jsx:
+            import 'styles/main.scss';
+        configure webpack.config.js
+
+    add picture loader
+        install some libraries again:
+            $npm install image-webpack-loader --save-dev
+            $npm install --save-dev file-loader
+        configure webpack.config.js
+
+-----------------------------------2 Diena React------------------------------------
+Build Todo app:
+    Let's see the react-dom!
+        https://chrome.google.com/webstore/category/extensions
+
+    create some data:
+        src/data/todoitems.jsx
+        create items and export it
+
+    use the data:
+        import in index.jsx
+        pass in Index component through attributes
+            attributes will be described as props in React
+
+    catch todo items through with constructor
+        constructor and props
+        super
+        state
+
+    create TodoItem component
+        constructor and props
+        super
+        render method
+            return span with this.props.title
+
+    display items in render method
+        create list variable before returning
+        assign TodoItems to variable with map function
+            pass props
+        inject variable in return block
+            ECMAScript 6 is available in curly braces ({ECMAScript 6}), while in html content
+        Don't forget the style points! (scss...)
+            styles/base/_typography.scss
+                import to main.scss
+            styles/components/_todoItem.scss
+                import to main.scss
+            styles/components/_todoApp.scss
+                import to main.scss
+
+    change todo item check value
+        bind functions, why?
+        add event listener with id return
+        pass function in Index through props
+
+    add form with input
+        add some style
+        create new todo item on submit
+            prevent default submission
+            get input value
+            create the new element and add to state
+                ... -> property spread notation
+                 add id
+                    $npm i shortid
+                    require it and use generate()
+            clean input value
+                directly versus...
+                SINGLE SOURCE OF TRUTH:
+                    controlled component:
+                        https://reactjs.org/docs/forms.html#controlled-components
+                        then can always get access to our element from other functions
+                    uncontrolled component:
+                        https://reactjs.org/docs/uncontrolled-components.html
+                        quick and dirty, but no SINGLE SOURCE OF TRUTH
+                    conclusion:
+                        https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
+                we use controlled components, cause we are alpha
+                    create new value in state
+                    set value in from from props
+                    add onChange method to set props
+                set it empty properly
+
+    delete a task
+        create new span
+        add some style
+            consolidating scss knowledge of nesting and selectors
+            add span.tooltip-text
+                transition:
+                    https://www.w3schools.com/css/css3_transitions.asp
+        create function
+        bind $this to function
+        pass function to todo item
+        add an event listener to delete span
+        pass id through the function
+        implement function logic
+            filter?
+        test it
+
+--------------------------------3 Diena-------------------------------------
+    edit item
+        goals for good application
+            make component controlled -> SINGLE SOURCE OF TROUGH!
+            make it responsive to state
+        to do so, functionality spreads into three events:
+            toggleItemEditability:
+                create editable property, for each item, in main class to track item's state
+                create function
+                bind $this to function
+                pass function to todo item
+                create function in todoItem to render depending on property->editable
+                    for so, we need to pass the property in our Index class
+                create function based on condition in TodoItem class
+                    create function
+                    bind $this to function
+                    create input in span if editable===true
+                        assign value to this.props.title
+                    create span if editable===false
+                        assign toggleItemEditability on doubleClick event with this.props.id
+                    create item based on conditional function in render function
+                    adjust styles
+                implement toggleItemEditability function logic in Index
+                test it
+                and now, style points! (scss again)
+            titleChanged:
+                create function
+                bind $this to function
+                pass function to todo item
+                call function in submit element on onChange event in TodoItem
+                    pass event and this.props.id
+                implement titleChanged function logic in Index
+                test it
+                minor style changes
+            titleSubmitted:
+                create function
+                bind $this to function
+                pass function to todo item
+                call function in submit element on onKeyPress event in TodoItem
+                    pass event and this.props.id
+                implement titleSubmitted function logic in Index
+                test it
+
+    finalize with style variables:
+        styles/abstracts/_variables.scss
+            import to main.scss
+
+React conventions
+    only include one React component per file.
+    if you Component has state
+        use class xxx  extends React.Component vs xxx = React.createClass
+    if your Component is stateless
+        use functions yyy (a, b, ...){} over yyy = (a, b, ...)={}
+    use .jsx file names for react components
+    when importing use first letter uppercase
+    use upper case for class names
+    use camel case for variables
+    use index.jsx for root of directory
+    avoid prop names that has other meaning, example:
+        className, class, style
+    Alignment:
+        bad:
+        <Foo superLongParam="bar"
+             anotherSuperLongParam="baz" />
+        good:
+        <Foo
+          superLongParam="bar"
+          anotherSuperLongParam="baz"
+        />
+    Quotes:
+        double quotes for HTML content
+            <Foo bar="bar" />
+        single qoutes for ES6 content
+            <Foo style={{ left: '20px' }} />
+    Spacing:
+        bad:
+            <Foo/>
+            <Foo                 />
+            <Foo
+             />
+        good:
+            <Foo />
+    No spaces in ES6 brackets:
+        bad:
+            <Foo bar={ baz } />
+        good:
+            <Foo bar={baz} />
+    Camel case for props
+    Always include alt attribute for img tag
+    Don't use iteratorCounter as key value
+        bad:
+            {todos.map((todo, index) =>
+              <Todo
+                {...todo}
+                key={index}
+              />
+            )}
+        good:
+            {todos.map(todo => (
+              <Todo
+                {...todo}
+                key={todo.id}
+              />
+            ))}
+    More conventions on higher topics:
+        https://github.com/airbnb/javascript/tree/master/react
+
+Fix React conventions mistakes
+    rename TodoApp.jsx name
+
+React router:
+    $npm install --save react-router-dom
+    create components/App.jsx
+    add libraries
+    make Component
+    put $root in router
+    add route
+        path
+        render
+        exact
+        strict
+    create components
+
+--------------------------------4 Diena---------------------
+
+NavLink
+    activeStyle + exact
+    activeClassName
+
+
+
+
+    N.D. kodėl neveikia:
+        user kintamasis
+        refresh po klaidos
+        Bootstrap dropDown
+        bootstrap links
+
+
+
+
+
+

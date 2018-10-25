@@ -1,0 +1,43 @@
+{
+  "name": "progresas",
+  "version": "1.0.0",
+  "description": "React borderplate",
+  "main": "src/index.jsx",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "author": "CodeAcademy",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.54",
+    "@babel/preset-react": "^7.0.0-beta.54",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^4.3.1",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "autoprefixer": "^9.0.1",
+    "babel-loader": "^8.0.0-beta.4",
+    "bootstrap": "^4.1.2",
+    "jquery": "^3.3.1",
+    "path": "^0.12.7",
+    "popper.js": "^1.14.3",
+    "postcss-loader": "^2.1.6",
+    "precss": "^3.1.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
+    "shortid": "^2.2.12"
+  }
+}

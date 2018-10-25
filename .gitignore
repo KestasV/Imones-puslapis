@@ -1,0 +1,6 @@
+// Ignoring all vs code
+*.vscode
+*.idea
+package-lock.json
+node_modules/
+dist/
